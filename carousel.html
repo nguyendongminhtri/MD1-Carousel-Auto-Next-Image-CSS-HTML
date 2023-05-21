@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    .mySlides {display:none;}
+
+    .dot {
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+
+    .active {
+      background-color: #717171;
+    }
+
+    /* Fading animation */
+    .fade {
+      animation-name: fade;
+      animation-duration: 1.5s;
+    }
+
+    @keyframes fade {
+      from {opacity: .4}
+      to {opacity: 1}
+    }
+
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 300px) {
+      .text {font-size: 11px}
+    }
+  </style>
+</head>
+<body>
+
+<h2 class="w3-center">Manual Slideshow</h2>
+
+<div class="w3-content w3-display-container">
+  <img class="mySlides" src="https://firebasestorage.googleapis.com/v0/b/chinhcomhut-cff0e.appspot.com/o/Nami.webp?alt=media&token=36a1f684-be1d-4287-b171-552947c99f9c" style="width:100%">
+  <img class="mySlides" src="https://firebasestorage.googleapis.com/v0/b/chinhcomhut-cff0e.appspot.com/o/zoro.webp?alt=media&token=612599ad-e2ab-457f-bc45-b015e0ce4d76" style="width:100%">
+  <img class="mySlides" src="https://firebasestorage.googleapis.com/v0/b/chinhcomhut-cff0e.appspot.com/o/boa%20hancock.jpg?alt=media&token=f56cd66d-65f8-4f63-ac8f-98fddeb7e6c7" style="width:100%">
+  <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+</div>
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+<!--<script>-->
+<!--  $('.carousel').carousel({-->
+<!--    interval: 2000-->
+<!--  })-->
+<!--</script>-->
+<script>
+  //NEX BANG COM
+  var slideIndex = 1;
+  showDivs(slideIndex);
+
+  function plusDivs(n) {
+    showDivs(slideIndex += n);
+  }
+  function currentSlide(n) {
+    showDivs(slideIndex = n);
+  }
+
+  function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    if (n > x.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = x.length}
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    x[slideIndex-1].style.display = "block";
+  }
+
+
+  //AUTO NEXT
+  let slideIndex2 = 0;
+  showSlides();
+
+  function showSlides() {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slideIndex2++;
+    if (slideIndex2 > slides.length) {slideIndex2 = 1}
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex2-1].style.display = "block";
+    dots[slideIndex2-1].className += " active";
+    setTimeout(showSlides, 4000); // Change image every 2 seconds
+  }
+</script>
+</body>
+</html>
